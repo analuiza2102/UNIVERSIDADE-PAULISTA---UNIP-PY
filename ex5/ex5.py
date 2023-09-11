@@ -73,12 +73,12 @@ class Municipios:
             total_votos_brancos = municipio['votos_brancos']
             total_votos_nulos = municipio['votos_nulos']
 
-            print("\nEstatísticas do Município:", municipio['nome'])
+            print(Fore.GREEN + "\nEstatísticas do Município:", municipio['nome'] + Fore.RESET)
             data = [
-                ["Quantidade Eleitores", total_eleitores, 100.0],
-                ["Votos em Branco", total_votos_brancos, (total_votos_brancos / total_eleitores) * 100],
-                ["Votos Nulos", total_votos_nulos, (total_votos_nulos / total_eleitores) * 100],
-                ["Votos Válidos", total_votos_validos, (total_votos_validos / total_eleitores) * 100]
+                ["Quantidade Eleitores", total_eleitores, "100%"],
+                ["Votos em Branco", total_votos_brancos, f"{(total_votos_brancos / total_eleitores) * 100:.2f}%"],
+                ["Votos Nulos", total_votos_nulos, f"{(total_votos_nulos / total_eleitores) * 100:.2f}%"],
+                ["Votos Válidos", total_votos_validos, f"{(total_votos_validos / total_eleitores) * 100:.2f}%"]
             ]
             headers = ["Descrição", "Quantidade", "Porcentagem"]
             print(tabulate(data, headers, tablefmt="pretty"))
@@ -89,12 +89,12 @@ class Municipios:
         max_votos_brancos = max(self.municipios, key=lambda x: x['votos_brancos'])
         max_votos_nulos = max(self.municipios, key=lambda x: x['votos_nulos'])
 
-        print("\nResumo:")
+        print(Fore.BLUE + "\nResumo:" + Fore.RESET)
         data = [
-            ["Município com mais eleitores", max_eleitores['nome'], max_eleitores['eleitores'], 100.0],
-            ["Município com mais votos válidos", max_votos_validos['nome'], max_votos_validos['votos_validos'], (max_votos_validos['votos_validos'] / max_eleitores['eleitores']) * 100],
-            ["Município com mais votos em branco", max_votos_brancos['nome'], max_votos_brancos['votos_brancos'], (max_votos_brancos['votos_brancos'] / max_eleitores['eleitores']) * 100],
-            ["Município com mais votos nulos", max_votos_nulos['nome'], max_votos_nulos['votos_nulos'], (max_votos_nulos['votos_nulos'] / max_eleitores['eleitores']) * 100]
+            ["Município com mais eleitores", max_eleitores['nome'], max_eleitores['eleitores'], "100%"],
+            ["Município com mais votos válidos", max_votos_validos['nome'], max_votos_validos['votos_validos'], f"{(max_votos_validos['votos_validos'] / max_eleitores['eleitores']) * 100:.2f}%"],
+            ["Município com mais votos em branco", max_votos_brancos['nome'], max_votos_brancos['votos_brancos'], f"{(max_votos_brancos['votos_brancos'] / max_eleitores['eleitores']) * 100:.2f}%"],
+            ["Município com mais votos nulos", max_votos_nulos['nome'], max_votos_nulos['votos_nulos'], f"{(max_votos_nulos['votos_nulos'] / max_eleitores['eleitores']) * 100:.2f}%"]
         ]
         headers = ["Totais", "Nome", "Quantidade", "Porcentagem"]
         print(tabulate(data, headers, tablefmt="pretty"))
@@ -115,5 +115,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-            
