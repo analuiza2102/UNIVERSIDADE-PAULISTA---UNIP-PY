@@ -1,32 +1,24 @@
-#Faça uma classe que leia a idade de uma pessoa em ano, meses e dias e imprima a idade em dias. Considerar ano com 365 dias e mês com 30 dias. 
-
 class IdadeEmDias:
-    def __init__(self):
-        pass
-
-    def ler_idade(self):
-        while True:
-            try:
-                self.anos = int(input("Digite a idade em anos: "))
-                self.meses = int(input("Digite a idade em meses: "))
-                break  # Sai do loop se todas as conversões forem bem-sucedidas
-            except ValueError:
-                print("Erro: Por favor, digite valores inteiros válidos.")
+    def __init__(self, anos, meses, dias):
+        self.anos = anos
+        self.meses = meses
+        self.dias = dias
 
     def calcular_idade_em_dias(self):
-        if hasattr(self, 'anos') and hasattr(self, 'meses'):
-            idade_em_dias = (self.anos * 365) + (self.meses * 30)
-            print(f"A idade em dias é: {idade_em_dias} dias")
-        else:
-            print("Você precisa digitar a idade em anos e meses antes de calcular a idade em dias.")
+        # Converter anos e meses em dias
+        total_dias = self.anos * 365 + self.meses * 30 + self.dias
+        return total_dias
 
-# Criar uma instância da classe
-calculadora = IdadeEmDias()
+# Solicitar entrada do usuário para idade em anos, meses e dias
+anos = int(input("Digite a idade em anos: "))
+meses = int(input("Digite a idade em meses: "))
+dias = int(input("Digite a idade em dias: "))
 
-# Ler a idade em anos e meses com verificação de entrada
-calculadora.ler_idade()
+# Criar um objeto da classe IdadeEmDias
+idade = IdadeEmDias(anos, meses, dias)
 
-# Calcular e imprimir a idade em dias
-calculadora.calcular_idade_em_dias()
+# Calcular a idade em dias
+idade_em_dias = idade.calcular_idade_em_dias()
 
-
+# Imprimir a idade em dias
+print(f"A idade em dias é: {idade_em_dias} dias")
